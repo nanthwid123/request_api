@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom Search JSON API Example</title>
+  </head>
+  <body>
+      <input type ="text" id="Search" placeholder="Search" oninput="myFunction()"/>  
+      <input type = "submit" value="test" onclick="myFunction()" >
+    <p id = "demo" >
+    <script>
+        function test (){
+            document.getElementById("demo2").innerHTML = "Hello JavaScript!";
+        }
+function myFunction(){
+var results = [];
+var searchField = "id";
+var searchVal = document.getElementById('Search').value;
+const promise = new Promise(function(resolve, reject){
+       time = new Date().getTime();
+       setTimeout(() => { 
+           const currentTime = new Date().getTime();
+           var searchVal = document.getElementById('Search').value;
+           const timeDiff = currentTime - time; 
+           if(timeDiff >= 1000){
+               resolve(searchVal)  
+           }
+       },1000)
+});
+promise.then(searchVal =>{
+    alert("start request")
+    time = new Date().getTime();
+       setTimeout(() => { 
+           const currentTime = new Date().getTime();
+           const timeDiff = currentTime - time; 
+           if(timeDiff >= 3000){
+              console.log("abort request" + searchVal)
+              for (var i=0 ; i < list.length ; i++){
+    if (list[i][searchField] == searchVal) {
+        results.push(list[i].id);
+        console.log(" ID "+ list[i].id)
+        console.log(" Name "+ list[i].name)
+        console.log(" Type "+ list[i].type)
+        alert("responce is succese!!")
+        document.getElementById('demo').innerHTML = "Id :" + list[i].id + " -- " + " Name :" + list[i].name + " -- "+ "Type :" + list[i].type ;   
+    }
+}
+           }
+       },3000)
+    var list= [
+    {"name":"my Name","id":1,"type":"car owner"},
+    {"name":"my Name2","id":12,"type":"car owner2"},
+    {"name":"my Name4","id":123,"type":"car owner3"},
+    {"name":"my Name4","id":4,"type":"car owner5"}
+];
+})
+}  
+     </script>
+  </body>
+</html>
