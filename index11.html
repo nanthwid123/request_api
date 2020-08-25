@@ -5,46 +5,43 @@
   </head>
   <body>
       <input type ="text" id="Search" placeholder="Search" oninput="myFunction()"/>  
-      <input type = "submit" value="test" onclick="response()" >
-      <input type = "submit" value="testF" onclick="timeout()" >
       <p id = "demo" >
-           <script>
-               function timeout(){
-                    rendomTime = Math.random();
-                   console.log("timeRandom is :"+rendomTime);
-               }
-                var list= [
+     
+    <script>
+        var list= [
            {"name":"my Name","id":1,"type":"car owner"},
            {"name":"my Name2","id":12,"type":"car owner2"},
            {"name":"my Name4","id":123,"type":"car owner3"},
            {"name":"my Name4","id":4,"type":"car owner5"}
         ];
-               function myFunction(){
+
+          function timeOut(){
+                  rendomTime = Math.random();
+               }
+
+          function myFunction(){
                 const promise = new Promise(function(resolve, reject){ 
                   time = new Date().getTime();
-             setTimeout(() => {
-               const currentTime = new Date().getTime();
+                    setTimeout(() => {
+                const currentTime = new Date().getTime();
                 var searchVal = document.getElementById('Search').value;
                   const timeDiff = currentTime - time;
                if(timeDiff >= 5000){ 
                    resolve(searchVal)  
+                   timeOut()
                 }
-         },5000)
-});promise.then(data =>{
-    response(data)
-    setTimeout(function() {
-      console.log("hello");
-    } ,doTheRandom());
-    var doTheRandom = function () {
-    random = randomizator(60000,200000);
-    setTimeout(doTheRandom, randomizator(1000, 2000)); // 1-2 seconds
-}
-})
+             },5000)
+            });promise.then(data =>{
+             setTimeout(function() {
+                 response(data)
+                 console.log("responce time is " + rendomTime);
+                } ,rendomTime);
+               })
                }
-               var results = [];
-               var searchField = "id";  
-               function response(searchVal){
-                   console.log(searchVal)
+
+        var results = [];
+        var searchField = "id";  
+          function response(searchVal){
                 for (var i=0 ; i < list.length ; i++){ 
                       if (list[i][searchField] == searchVal) {
                        results.push(list[i].id);
@@ -53,9 +50,9 @@
                        console.log(" Type "+ list[i].type)
                        console.log("responce is succese!!")
                        document.getElementById('demo').innerHTML = "Id :" + list[i].id + " -- " + " Name :" + list[i].name + " -- "+ "Type :" + list[i].type ;  
-   }
-}                
+                   }
+                }                
                }
-            </script>
+    </script>
   </body>
 </html>
